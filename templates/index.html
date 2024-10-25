@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .post {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .post-title {
+            font-size: 1.5em;
+            text-transform: capitalize;
+            color: #2c3e50;
+        }
+        .post-content {
+            color: #7f8c8d;
+            line-height: 22px;
+        }
+        .post-date {
+            font-size: 0.9em;
+            color: #95a5a6;
+        }
+        .post-author{
+            font-size: 1em;
+            color: #2c3e50;
+            /* font-style: italic; */
+            text-transform: capitalize;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>All Blog Posts</h1>
+
+    {% if post %}
+        {% for post in post %}
+            <div class="post">
+                <a href="{% url 'allposts' post.id %}">
+                    <h2 class="post-title">{{ post.title }}</h2>
+                    <b class="post-author">-{{post.author}}</b>
+                    <p class="post-content">{{ post.blog_content|truncatewords:30}}</p>
+                    <p class="post-date">Published on: {{ post.time|date:"F j, Y, g:i a" }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No blog posts available.</p>
+    {% endif %}
+
+</body>
+</html>

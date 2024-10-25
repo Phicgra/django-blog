@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }} - Blog Post</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Container */
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Post Title */
+        .post-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Post Meta */
+        .post-meta {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        /* Post Content */
+        .post-content {
+            font-size: 1.1em;
+            color: #444;
+        }
+
+        /* Back to Posts */
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            font-size: 0.9em;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .post-title {
+                font-size: 2em;
+                text-transform: capitalize;
+
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Post Title -->
+        <h1 class="post-title">{{ post.title }}</h1>
+
+        <!-- Post Meta (Date and Time) -->
+        <p class="post-meta">Posted on: {{ post.time|date:"F j, Y, g:i a" }}</p>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            {{ post.blog_content|safe }}  <!-- 'safe' filter ensures that HTML content is rendered properly -->
+        </div>
+
+        <!-- Back to Posts Link -->
+        <a class="back-link" class="back-link" href="{% url 'index' %}">&larr; Back to all posts</a>
+    </div>
+</body>
+</html>
